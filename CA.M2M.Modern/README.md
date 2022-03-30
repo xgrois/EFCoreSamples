@@ -12,6 +12,7 @@ Disadvantages:
 
 -   I think you cannot define the name of the join table. It might be something you want for naming conventions.
 For instance, in this sample, the generated table name breaks naming conventions.
+-   You may prefer that your data model fits with the DB model and you don't like to assume "hidden" tables.
 
 Limitations:
 
