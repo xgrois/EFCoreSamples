@@ -8,6 +8,11 @@ Advantages:
 -   Data model is "more OOP like". Intermediate objects don't make sense in OOP.
 -   Queries are simpler (no need to be aware of join table)
 
+Disadvantages:
+
+-   I think you cannot define the name of the join table. It might be something you want for naming conventions.
+For instance, in this sample, the generated table name breaks naming conventions.
+
 Limitations:
 
 -   If you need to include extra properties in your DB join table beyond the 2 FKs,
@@ -30,8 +35,6 @@ public class RestaurantDbContext : DbContext
 
     public DbSet<Dish> Dishes => Set<Dish>();
 
-    // This join table is not strictly needed, but still, define it so you can start queries from it
-    public DbSet<DishToIngredient> DishesToIngredients => Set<DishToIngredient>();
     public DbSet<Ingredient> Ingredients => Set<Ingredient>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -42,6 +45,7 @@ public class RestaurantDbContext : DbContext
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(RestaurantDbContext).Assembly);
     }
 }
+
 ```
 
 ### DbContextFactory
@@ -77,7 +81,7 @@ public class Dish
     public int? Stars { get; set; }
 
     // 1 dish can have 1+ ingredients
-    public List<DishToIngredient> DishesToIngredients { get; set; } = new();
+    public List<Ingredient> Ingredients { get; set; } = new();
 }
 
 public class DishEntityTypeConfiguration : IEntityTypeConfiguration<Dish>
@@ -103,7 +107,7 @@ public class Ingredient
     public string Name { get; set; } = String.Empty;
 
     // 1 Ingredient may be part of 0+ dish(es)
-    public List<DishToIngredient> DishesToIngredients { get; set; } = new();
+    public List<Dish> Dishes { get; set; } = new();
 }
 
 public class IngredientEntityTypeConfiguration : IEntityTypeConfiguration<Ingredient>
@@ -112,40 +116,6 @@ public class IngredientEntityTypeConfiguration : IEntityTypeConfiguration<Ingred
     {
         builder.HasKey(x => x.IngredientId);
         builder.Property(x => x.Name).HasMaxLength(25);
-    }
-}
-```
-
-### Model for the Join Table
-
-```csharp
-public class DishToIngredient
-{
-    // FK from Dishes
-    public int DishId { get; set; }
-    public Dish Dish { get; set; } = default!;
-
-    // FK from Ingredients
-    public int IngredientId { get; set; }
-    public Ingredient Ingredient { get; set; } = default!;
-}
-
-public class DishToIngredientEntityTypeConfiguration : IEntityTypeConfiguration<DishToIngredient>
-{
-    public void Configure(EntityTypeBuilder<DishToIngredient> builder)
-    {
-        builder.ToTable("DishesToIngredients");
-
-        builder.HasKey(x => new { x.DishId, x.IngredientId });
-
-        builder.HasOne(dti => dti.Dish)
-            .WithMany(d => d.DishesToIngredients)
-            .HasForeignKey(dti => dti.DishId);
-
-        builder.HasOne(dti => dti.Ingredient)
-            .WithMany(i => i.DishesToIngredients)
-            .HasForeignKey(dti => dti.IngredientId);
-
     }
 }
 ```
