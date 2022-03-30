@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32314.265
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CA.M2M.Classic", "CA.M2M.Classic\CA.M2M.Classic.csproj", "{BDDEAE30-17EC-49D5-A685-C0A54F3CC81D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CA.M2M.Modern", "CA.M2M.Modern\CA.M2M.Modern.csproj", "{EBCA388F-ACF1-4B69-9AD1-FB37697C8FBF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BDDEAE30-17EC-49D5-A685-C0A54F3CC81D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDDEAE30-17EC-49D5-A685-C0A54F3CC81D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDDEAE30-17EC-49D5-A685-C0A54F3CC81D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDDEAE30-17EC-49D5-A685-C0A54F3CC81D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBCA388F-ACF1-4B69-9AD1-FB37697C8FBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBCA388F-ACF1-4B69-9AD1-FB37697C8FBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBCA388F-ACF1-4B69-9AD1-FB37697C8FBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBCA388F-ACF1-4B69-9AD1-FB37697C8FBF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D583F56B-D80F-4DA0-84A2-852E2B33E8DA}
+	EndGlobalSection
+EndGlobal
